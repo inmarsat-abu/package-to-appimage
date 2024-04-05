@@ -127,8 +127,9 @@ $PACKAGE_MANAGER_REPO_INSTALL wget file cpio
 
 if [ "$DISTRIBUTION" = "alt" ]
     then $PACKAGE_MANAGER_REPO_INSTALL icon-theme-adwaita
-elif [ "$DISTRIBUTION" = "fedora" ] || [ "$DISTRIBUTION" = "opensuse" ] || [ "$DISTRIBUTION" = "centos" ] || [ "$DISTRIBUTION" = "mageia" ] || [ "$DISTRIBUTION" = "debian:testing
-" ]
+elif [ "$DISTRIBUTION" = "alma" ]
+    then $PACKAGE_MANAGER_REPO_INSTALL adwaita-icon-theme epel-release
+elif [ "$DISTRIBUTION" = "fedora" ] || [ "$DISTRIBUTION" = "opensuse" ] || [ "$DISTRIBUTION" = "centos" ] || [ "$DISTRIBUTION" = "mageia" ] || [ "$DISTRIBUTION" = "debian:testing" ]
     then $PACKAGE_MANAGER_REPO_INSTALL adwaita-icon-theme
 elif [ "$DISTRIBUTION" = "ubuntu" ] 
     then $PACKAGE_MANAGER_REPO_INSTALL adwaita-icon-theme-full 
@@ -181,7 +182,7 @@ for plugin in ${PLUGINS[*]}
         #Installing dependencies
         if [ "$DISTRIBUTION" = "alt" ]
         then $PACKAGE_MANAGER_REPO_INSTALL libgtk+3-devel librsvg-devel patchelf gobject-introspection-devel
-        elif [ "$DISTRIBUTION" = "fedora" ] || [ "$DISTRIBUTION" = "opensuse" ] || [ "$DISTRIBUTION" = "centos" ] || [ "$DISTRIBUTION" = "mageia" ]
+        elif [ "$DISTRIBUTION" = "fedora" ] || [ "$DISTRIBUTION" = "opensuse" ] || [ "$DISTRIBUTION" = "centos" ] || [ "$DISTRIBUTION" = "mageia" ] || [ "$DISTRIBUTION" = "alma" ] 
         then $PACKAGE_MANAGER_REPO_INSTALL gtk3-devel librsvg2-devel patchelf gobject-introspection-devel
         elif [ "$DISTRIBUTION" = "ubuntu" ] || [ "$DISTRIBUTION" = "debian" ]
         then $PACKAGE_MANAGER_REPO_INSTALL libgtk-3-dev librsvg2-dev pkg-config patchelf libgirepository1.0-dev

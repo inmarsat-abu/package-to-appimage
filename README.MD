@@ -1,3 +1,7 @@
+`TMPDIR=/tmp ./package-to-appimage --package virt-viewer-9.0-12.el8.x86_64.rpm --plugin gtk`
+
+Alma hardcoded to almalinux:8
+
 # Package-to-appimage
 Tool for conversion DEB and RPM packages into appimage format
 ## About

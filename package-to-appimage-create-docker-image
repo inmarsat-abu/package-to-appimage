@@ -27,7 +27,7 @@ function distro_is_correct()
 {
     if [ $# -eq 1 ]
     then 
-        for plugin in alt fedora opensuse centos mageia ubuntu debian
+        for plugin in alt fedora opensuse centos mageia ubuntu debian alma
         do 
             if [ "$1" = "$plugin" ]
                 then echo 1; exit;
@@ -101,6 +101,8 @@ if [ "$DISTRIBUTION" = "" ]
         then DOCKER_IMAGE="debian:testing"
     elif [ "$DISTRIBUTION" = "opensuse" ]
         then DOCKER_IMAGE="opensuse/leap"
+    elif [ "$DISTRIBUTION" = "alma" ]
+        then DOCKER_IMAGE="almalinux:8"
     else
         DOCKER_IMAGE=$DISTRIBUTION
 fi
@@ -112,8 +114,8 @@ case "$DISTRIBUTION" in
     "alt")  PACKAGE_MANAGER_UPDATE="apt-get update"
             PACKAGE_MANAGER_REPO_INSTALL="apt-get install --fix-missing -y" ;;
         
-    "fedora" | "centos")    PACKAGE_MANAGER_UPDATE="dnf update -y"
-                            PACKAGE_MANAGER_REPO_INSTALL="dnf install -y" ;;
+    "fedora" | "centos" | "alma")    PACKAGE_MANAGER_UPDATE="dnf update -y"
+                                     PACKAGE_MANAGER_REPO_INSTALL="dnf install -y" ;;
     
     "opensuse")             PACKAGE_MANAGER_UPDATE="zypper update -y"
                             PACKAGE_MANAGER_REPO_INSTALL="zypper install -y" ;;
@@ -166,7 +168,7 @@ for plugin in ${PLUGINS[*]}
         #Installing dependencies
         if [ "$DISTRIBUTION" = "alt" ]
         then echo "RUN $PACKAGE_MANAGER_REPO_INSTALL libgtk+3-devel librsvg-devel patchelf gobject-introspection-devel" >> $DOCKERFILE
-        elif [ "$DISTRIBUTION" = "fedora" ] || [ "$DISTRIBUTION" = "opensuse" ] || [ "$DISTRIBUTION" = "centos" ] || [ "$DISTRIBUTION" = "mageia" ]
+        elif [ "$DISTRIBUTION" = "fedora" ] || [ "$DISTRIBUTION" = "opensuse" ] || [ "$DISTRIBUTION" = "centos" ] || [ "$DISTRIBUTION" = "mageia" ] [ "$DISTRIBUTION" = "alma" ]
         then echo "RUN $PACKAGE_MANAGER_REPO_INSTALL gtk3-devel librsvg2-devel patchelf gobject-introspection-devel" >> $DOCKERFILE
         elif [ "$DISTRIBUTION" = "ubuntu" ] || [ "$DISTRIBUTION" = "debian" ]
         then echo "RUN $PACKAGE_MANAGER_REPO_INSTALL libgtk-3-dev librsvg2-dev pkg-config patchelf libgirepository1.0-dev" >> $DOCKERFILE

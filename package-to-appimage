@@ -172,6 +172,14 @@ if [ "$PACKAGE_TYPE" = "RPM" ]
         PACKAGE_MANAGER_REPO_INSTALL="dnf install -y"
         PACKAGE_MANAGER_FILE_INSTALL="dnf install --nobest -y"
 
+    elif [ "$VENDOR" = "AlmaLinux" ]
+        then
+        DISTRIBUTION+="alma"
+        NAME_OF_IMAGE+="almalinux:8"
+        PACKAGE_MANAGER_UPDATE="dnf update -y"
+        PACKAGE_MANAGER_REPO_INSTALL="dnf install -y"
+        PACKAGE_MANAGER_FILE_INSTALL="dnf install --nobest -y"
+
     elif [ "$VENDOR" = "Mageia.Org" ]
         then
         DISTRIBUTION+="mageia"
